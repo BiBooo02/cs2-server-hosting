@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Feature Card Animation
   const cards = document.querySelectorAll(".feature-card");
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -11,13 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { threshold: 0.2 }
   );
-
   cards.forEach((card) => observer.observe(card));
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+  // Pricing Card Animation
   const pricingCards = document.querySelectorAll(".pricing-card");
-
   function handleScroll() {
     pricingCards.forEach((card) => {
       const cardPosition = card.getBoundingClientRect().top;
@@ -27,30 +24,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
   window.addEventListener("scroll", handleScroll);
   handleScroll(); // Run on load in case already in view
-});
 
-document.querySelectorAll(".faq-question").forEach((item) => {
-  item.addEventListener("click", () => {
-    const faqItem = item.parentElement;
-    faqItem.classList.toggle("active");
+  // FAQ Toggle
+  document.querySelectorAll(".faq-question").forEach((item) => {
+    item.addEventListener("click", () => {
+      const faqItem = item.parentElement;
+      faqItem.classList.toggle("active");
+    });
   });
 });
 
-const scrollContainer = document.querySelector(".reviews-scroll");
-const leftBtn = document.querySelector(".left");
-const rightBtn = document.querySelector(".right");
-
-rightBtn.addEventListener("click", () => {
-  scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
-});
-leftBtn.addEventListener("click", () => {
-  scrollContainer.scrollBy({ left: -300, behavior: "smooth" });
-});
-
+// Mobile Menu Toggle
 function toggleMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    mobileNav.classList.toggle('active');
-  }
+  const mobileNav = document.getElementById("mobileNav");
+  mobileNav.classList.toggle("active");
+}
