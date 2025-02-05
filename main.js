@@ -39,5 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // Mobile Menu Toggle
 function toggleMenu() {
   const mobileNav = document.getElementById("mobileNav");
+  const hamburger = document.querySelector(".hamburger");
+  const overlay = document.getElementById("overlay");
+
   mobileNav.classList.toggle("active");
+  hamburger.classList.toggle("active");
+  overlay.classList.toggle("active");
 }
+
+// Close menu when clicking outside
+document.getElementById("overlay").addEventListener("click", function () {
+  toggleMenu();
+});

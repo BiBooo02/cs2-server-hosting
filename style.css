@@ -10,6 +10,8 @@ body {
   background: linear-gradient(135deg, #222 0%, #111 100%);
 }
 
+
+/* Nav */
 nav {
   display: flex;
   justify-content: space-between;
@@ -20,7 +22,7 @@ nav {
 }
 
 nav .logo img {
-  height: 50px;
+  height: 30px;
 }
 
 nav .nav-links {
@@ -40,12 +42,13 @@ nav .nav-links li a:hover {
   color: #ff9900;
 }
 
-/* HAMBURGER MENU */
+/* Hamburger Menu */
 .hamburger {
   display: none;
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
+  z-index: 100;
 }
 
 .hamburger .bar {
@@ -55,17 +58,35 @@ nav .nav-links li a:hover {
   transition: all 0.3s;
 }
 
-/* MOBILE NAVIGATION (SLIDER) */
+/* Rotate bars into "X" when active */
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Nav */
 .mobile-nav {
   position: fixed;
-  top: 0;
-  right: -250px; /* Hidden by default */
-  height: 100%;
-  width: 250px;
-  background-color: #333;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  padding-top: 100px;
+  top: -100%; /* Hidden above screen */
+  left: 0;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.95);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: top 0.4s ease-in-out;
+  padding-top: 70px;
+  z-index: 99;
+}
+
+/* Show menu */
+.mobile-nav.active {
+  top: 60px; /* Just below the nav */
 }
 
 .mobile-nav ul {
@@ -75,7 +96,7 @@ nav .nav-links li a:hover {
 
 .mobile-nav ul li a {
   display: block;
-  padding: 20px;
+  padding: 15px;
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -87,9 +108,22 @@ nav .nav-links li a:hover {
   background-color: #ff9900;
 }
 
-/* Show the mobile nav when active */
-.mobile-nav.active {
-  right: 0;
+/* Overlay when menu opens */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* RESPONSIVE DESIGN */
@@ -259,10 +293,10 @@ nav .nav-links li a:hover {
   background-image: linear-gradient(rgba(14, 12, 12, 1), rgba(12, 7, 7, 0.9)), url("img/cttt.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-attachment: fixed;
+  background-size: cover; /* Use 'cover' instead of 'contain' */
   color: white;
-  height: 100vh;
+  height: auto; /* Change from 100vh to auto for dynamic height */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .pricing h2 {
@@ -270,7 +304,6 @@ nav .nav-links li a:hover {
  margin-bottom: 40px;
 }
 
-/* Pricing Container */
 .pricing-container {
  display: flex;
  justify-content: center;
@@ -278,7 +311,6 @@ nav .nav-links li a:hover {
  flex-wrap: wrap;
 }
 
-/* Pricing Card */
 .pricing-card {
  display: flex;
  flex-direction: column;
@@ -297,43 +329,41 @@ nav .nav-links li a:hover {
  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Basic Plan */
+
 .pricing-card.basic {
  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Premium Plan */
+
 .pricing-card.premium {
  background: rgba(255, 165, 0, 0.2);
  border: 2px solid #ff9900;
 }
 
-/* Animation when in view */
+
 .pricing-card.show {
  opacity: 1;
  transform: translateY(0);
 }
 
-/* Hover Effect */
+
 .pricing-card:hover {
  transform: translateY(-10px);
  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Plan Title */
+
 .pricing-card h3 {
  font-size: 1.8rem;
  margin-bottom: 10px;
  color: #ff9900;
 }
 
-/* Plan Price */
 .pricing-card h4 {
  font-size: 2rem;
  margin: 20px 0;
 }
 
-/* Feature List */
 .pricing-card ul {
  list-style: none;
  padding: 0;
@@ -345,7 +375,6 @@ nav .nav-links li a:hover {
  margin: 10px 0;
 }
 
-/* Order Button */
 .pricing-card .order-btn {
  background: #ff9900;
  color: white;
@@ -362,6 +391,8 @@ nav .nav-links li a:hover {
  background: #e08900;
 }
 
+
+/* FAQ Section */
 .faq {
   text-align: center;
   padding: 50px 20px;
@@ -419,9 +450,9 @@ nav .nav-links li a:hover {
   transition: transform 0.3s ease-in-out;
 }
 
-/* Ensure Swiper container is visible */
 
 
+/* Testimonial Section */
 .testimonial-section {
   height: 100vh;
   display: flex;
@@ -433,6 +464,7 @@ nav .nav-links li a:hover {
 
 .testimonial-section h2 {
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .testimonial-container {
@@ -538,11 +570,15 @@ footer {
   color: rgba(255, 255, 255, 0.7);
 }
 
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
   nav {
-    flex-direction: column;
-    align-items: flex-start;
     padding: 20px;
+  }
+
+  nav .logo img{
+    height: 25px;
   }
 
   nav ul {
@@ -555,8 +591,9 @@ footer {
     font-size: 36px;
   }
 
+
   .hero-content p {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .reviews-scroll {
@@ -569,12 +606,14 @@ footer {
     padding: 15px;
   }
 
-
   .pricing-container {
-    flex-direction: column;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+  }
+
+  .pricing-card {
+    width: 90%; /* Adjust card width to fit smaller screens */
+    padding: 20px; /* Reduce padding */
   }
 }
 
